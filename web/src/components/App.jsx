@@ -25,13 +25,30 @@ function App() {
 
   const [messageUrl, setMessageUrl] = useState(''); 
   const [messageError, setMessageError] = useState('');
+  const [ projectsArray, setProjectsArray ] = useState( undefined );
 
- useEffect(() => {
-  const saveData = localStorage.getItem('formData');
-  if(saveData){
-    setAllValues(JSON.parse(saveData));
-  }
- },[])
+  useEffect(() => {
+
+    //Fetch projects
+    async function fetchProjects() {
+      try { 
+        const res = await fetch('https://localhost:3000/projects')
+        const data = await res.json();
+        setProjectsArray(data);
+        }
+        catch(error) {
+          console.log('Error', error);
+        }
+    }
+
+    fetchProjects();
+
+    //Import data from LS (new project)
+    const saveData = localStorage.getItem('formData');
+    if(saveData){
+      setAllValues(JSON.parse(saveData));
+    }
+  },[])
 
   //Get input values
   const handleInputValue = (nameProperty, valueProperty) => {
@@ -93,7 +110,7 @@ function App() {
       <Header />
       <Routes>
 
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Landing projectsArray={projectsArray} />} />
 
         <Route path="/newproject" element={
           <NewProject handleInputValue={handleInputValue}

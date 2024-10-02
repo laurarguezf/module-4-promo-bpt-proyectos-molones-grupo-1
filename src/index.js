@@ -53,7 +53,7 @@ server.get('/projects', async (req, res) => {
 	}
 
 	//Obtenemos los datos
-	const [results] = await connection.query('SELECT * FROM projectos_molones;');
+	const [results] = await connection.query('SELECT * FROM proyectos_molones;');
 
 	//Devolvemos los resultados
 	if (!results) {
