@@ -1,19 +1,32 @@
 {
   "name": "module-4-promo-bpt-proyectos-molones-grupo-1",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Proyectos molones grupo 1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "dev": "node --watch src/index.js"
   },
-  "author": "",
+  "author": "grupo uno",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mysql2": "^3.11.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurarguezf/module-4-promo-bpt-proyectos-molones-grupo-1.git"
+  },
+  "keywords": [
+    "express",
+    "node"
+  ],
+  "bugs": {
+    "url": "https://github.com/laurarguezf/module-4-promo-bpt-proyectos-molones-grupo-1/issues"
+  },
+  "homepage": "https://github.com/laurarguezf/module-4-promo-bpt-proyectos-molones-grupo-1#readme"
 }
