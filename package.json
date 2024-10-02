@@ -16,7 +16,6 @@
     "express": "^4.21.0",
     "mysql2": "^3.11.3"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/laurarguezf/module-4-promo-bpt-proyectos-molones-grupo-1.git"

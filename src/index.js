@@ -12,11 +12,11 @@ const serverPort = 3000;
 
 //Config
 server.use(cors());
-server.use(express.json({limit: '50Mb'}));
+server.use(express.json({ limit: '50Mb' }));
 
 //MySQL connection
 async function getConnection() {
-  try {
+	try {
 		const connection = await mysql.createConnection({
 			host: process.env['DB_HOST'],
 			port: 3306,
@@ -25,35 +25,36 @@ async function getConnection() {
 			database: process.env['DB_NAME']
 		});
 
+
 		await connection.connect();
 		return connection;
 	}
-	catch(error) {
+	catch (error) {
 		console.log(error);
-		return null;		
+		return null;
 	}
 }
 
 //Arrancar el servidor
 server.listen(serverPort, () => {
-  console.log(`Server listening at http://localhost:${serverPort}`);
+	console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
 
 //ENDPOINTS
 
 // -------- Listar todos los proyectos --------
-server.get('/projects', async (req, res) => {
+server.get('/project', async (req, res) => {
 	//Nos conectamos
 	const connection = await getConnection();
-	
-	if( !connection ) {
-		res.status(500).json({success: false, error: 'Error con la conexión.'});
+
+	if (!connection) {
+		res.status(500).json({ success: false, error: 'Error con la conexión.' });
 		return;
 	}
 
 	//Obtenemos los datos
-	const [results] = await connection.query('SELECT * FROM proyectos_molones;');
+	const [results] = await connection.query('SELECT * FROM freedb_proyectos_molones.project;');
 
 	//Devolvemos los resultados
 	if (!results) {
@@ -65,7 +66,7 @@ server.get('/projects', async (req, res) => {
 	else {
 		res.status(200).json(results);
 	}
-	
+
 	//Cerramos conexión
 	await connection.close();
 });
@@ -76,16 +77,16 @@ server.post('/projects', async (req, res) => {
 	//Nos conectamos
 	const connection = await getConnection();
 
-	if( !connection ) {
-		res.status(500).json({success: false, error: 'Error con la conexión.'});
+	if (!connection) {
+		res.status(500).json({ success: false, error: 'Error con la conexión.' });
 	}
 
 	//Comprobamos que están todos los datos
-	
+
 	//Insertamos nuevos datos
-	
+
 	//Devolvemos un JSON en función de los resultados del insert
-	if (results.affectedRows === 1)	{
+	if (results.affectedRows === 1) {
 		res.status(201).json({
 			success: true,
 			message: 'Proyecto creado correctamente',
