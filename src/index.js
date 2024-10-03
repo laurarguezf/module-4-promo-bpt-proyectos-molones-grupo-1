@@ -54,7 +54,8 @@ server.get('/projects', async (req, res) => {
 	}
 
 	//Obtenemos los datos
-	const [results] = await connection.query('SELECT * FROM freedb_proyectos_molones.project;');
+	const [results] = await connection.query(`SELECT * from project
+	JOIN Author ON project.Author_idAuthor = Author.idAuthor;`);
 
 	//Devolvemos los resultados
 	if (!results) {

@@ -25,14 +25,14 @@ function App() {
 
   const [messageUrl, setMessageUrl] = useState(''); 
   const [messageError, setMessageError] = useState('');
-  const [ projectsArray, setProjectsArray ] = useState( undefined );
+  const [ projectsArray, setProjectsArray ] = useState( [] );
 
   useEffect(() => {
 
     //Fetch projects
     async function fetchProjects() {
       try { 
-        const res = await fetch('https://localhost:3000/projects')
+        const res = await fetch('http://localhost:3000/projects')
         const data = await res.json();
         setProjectsArray(data);
         }
@@ -80,7 +80,7 @@ function App() {
   //Create project card
   const handleClickCreate = () => {
 
-    fetch('https://dev.adalab.es/api/projectCard', {
+    fetch('http://localhost:3000/projects', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
