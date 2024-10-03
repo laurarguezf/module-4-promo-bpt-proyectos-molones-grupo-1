@@ -44,7 +44,7 @@ server.listen(serverPort, () => {
 //ENDPOINTS
 
 // -------- Listar todos los proyectos --------
-server.get('/project', async (req, res) => {
+server.get('/projects', async (req, res) => {
 	//Nos conectamos
 	const connection = await getConnection();
 
