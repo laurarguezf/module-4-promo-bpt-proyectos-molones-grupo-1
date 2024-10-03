@@ -52,7 +52,7 @@ function Landing( {projectsArray} ) {
 }
 
 Landing.propTypes = {
-    projectsArray: PropTypes.array.isRequired,
+    projectsArray: PropTypes.array.isRequired
   };
 
 export default Landing;
