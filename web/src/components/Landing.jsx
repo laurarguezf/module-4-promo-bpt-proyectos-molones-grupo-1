@@ -4,7 +4,7 @@ import '../styles/App.scss';
 import PropTypes from 'prop-types';
 
 
-function Landing( {projectsArray} ) {
+function Landing({ projectsArray }) {
     return (
 
         <main className="main__landing">
@@ -43,8 +43,9 @@ function Landing( {projectsArray} ) {
                                 </div>
                             </div>
                         </div>
-                    )})}
-                </article>
+                    )
+                })}
+            </article>
 
         </main>
 
@@ -53,6 +54,6 @@ function Landing( {projectsArray} ) {
 
 Landing.propTypes = {
     projectsArray: PropTypes.array.isRequired
-  };
+};
 
 export default Landing;

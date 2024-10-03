@@ -65,6 +65,11 @@ server.get('/projects', async (req, res) => {
 		})
 	}
 	else {
+
+		const data = {
+			success: true,
+			projects: results
+		};
 		res.status(200).json(results);
 	}
 
