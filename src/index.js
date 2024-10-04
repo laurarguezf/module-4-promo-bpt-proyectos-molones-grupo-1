@@ -4,7 +4,8 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
-require('dotenv').config();
+const getConnection = require('./db/db');
+
 
 //Crear servidor
 const server = express();
@@ -15,25 +16,8 @@ server.use(cors());
 server.use(express.json({ limit: '50Mb' }));
 
 //MySQL connection
-async function getConnection() {
-	try {
-		const connection = await mysql.createConnection({
-			host: process.env['DB_HOST'],
-			port: 3306,
-			user: process.env['DB_USER'],
-			password: process.env['DB_PASSWORD'],
-			database: process.env['DB_NAME']
-		});
+const conn = getConnection();
 
-
-		await connection.connect();
-		return connection;
-	}
-	catch (error) {
-		console.log(error);
-		return null;
-	}
-}
 
 //Arrancar el servidor
 server.listen(serverPort, () => {
@@ -108,3 +92,4 @@ server.post('/projects', async (req, res) => {
 	//Cerramos conexión
 	await connection.close();
 });
+
