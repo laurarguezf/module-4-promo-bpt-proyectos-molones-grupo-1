@@ -14,6 +14,7 @@ const serverPort = 3000;
 //Config
 server.use(cors());
 server.use(express.json({ limit: '50Mb' }));
+server.set('view engine', 'ejs');
 
 //MySQL connection
 const conn = getConnection();
