@@ -11,16 +11,16 @@ function App() {
 
   //Global variables
   const [allValues, setAllValues] = useState({
-    name: '',
-    slogan: '',
-    repo: '',
-    demo: '',
-    technologies: '',
-    desc: '',
-    autor: '',
-    job: '',
-    photo: '',
-    image: '',
+    project_name: '',
+    project_slogan: '',
+    project_repo: '',
+    project_demo: '',
+    project_technologies: '',
+    project_description: '',
+    author_name: '',
+    author_job: '',
+    author_photo: '',
+    project_image: '',
   });
 
   const [messageUrl, setMessageUrl] = useState(''); 
@@ -54,23 +54,22 @@ function App() {
   const handleInputValue = (nameProperty, valueProperty) => {
     const newValues = { ...allValues, [nameProperty]: valueProperty };
     setAllValues(newValues);
-
     localStorage.setItem('formData', JSON.stringify(newValues));
   }
 
   //Delete (form, LS, messages)
   const handleClearForm = () => {
     setAllValues ({
-    name: '',
-    slogan: '',
-    repo: '',
-    demo: '',
-    technologies: '',
-    desc: '',
-    autor: '',
-    job: '',
-    photo: '',
-    image: '',
+    project_name: '',
+    project_slogan: '',
+    project_repo: '',
+    project_demo: '',
+    project_technologies: '',
+    project_description: '',
+    author_name: '',
+    author_job: '',
+    author_photo: '',
+    project_image: '',
     });
     setMessageError('');
     setMessageUrl('');

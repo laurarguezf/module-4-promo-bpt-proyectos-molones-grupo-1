@@ -12,10 +12,10 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
   }
 
   const updateProjectImage = (img) => {
-    handleInputValue('image', img);
+    handleInputValue('project_image', img);
   }
   const updateAuthorPhoto = (img) => {
-    handleInputValue('photo', img);
+    handleInputValue('author_photo', img);
   }
 
   return (
@@ -28,8 +28,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <input
           className="addForm__input"
           type="text"
-          name="name"
-          id="name"
+          name="project_name"
+          id="project_name"
           value={allValues.project_name}
           placeholder="Nombre del proyecto"
           onChange={handleInput}
@@ -37,8 +37,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <input
           className="addForm__input"
           type="text"
-          name="slogan"
-          id="slogan"
+          name="project_slogan"
+          id="project_slogan"
           value={allValues.project_slogan}
           placeholder="Slogan"
           onChange={handleInput}
@@ -47,8 +47,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
           <input
             className="addForm__input"
             type="url"
-            name="repo"
-            id="repo"
+            name="project_repo"
+            id="project_repo"
             value={allValues.project_repo}
             placeholder="Repositorio"
             onChange={handleInput}
@@ -56,8 +56,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
           <input
             className="addForm__input"
             type="url"
-            name="demo"
-            id="demo"
+            name="project_demo"
+            id="project_demo"
             value={allValues.project_demo}
             placeholder="Demo"
             onChange={handleInput}
@@ -66,8 +66,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <input
           className="addForm__input"
           type="text"
-          name="technologies"
-          id="technologies"
+          name="project_technologies"
+          id="project_technologies"
           value={allValues.project_technologies}
           placeholder="Tecnologías"
           onChange={handleInput}
@@ -75,8 +75,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <textarea
           className="addForm__input"
           type="text"
-          name="desc"
-          id="desc"
+          name="project_description"
+          id="project_description"
           value={allValues.project_description}
           placeholder="Descripción"
           rows="5"
@@ -89,8 +89,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <input
           className="addForm__input"
           type="text"
-          name="autor"
-          id="autor"
+          name="author_name"
+          id="author_name"
           value={allValues.author_name}
           placeholder="Nombre"
           onChange={handleInput}
@@ -98,8 +98,8 @@ function Form({ allValues, handleInputValue, handleClickCreate, messageError, me
         <input
           className="addForm__input"
           type="text"
-          name="job"
-          id="job"
+          name="author_job"
+          id="author_job"
           value={allValues.author_job}
           placeholder="Trabajo"
           onChange={handleInput}

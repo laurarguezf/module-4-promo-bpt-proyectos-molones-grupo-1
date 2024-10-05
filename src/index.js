@@ -74,23 +74,53 @@ server.post('/projects', async (req, res) => {
 
 	//Comprobamos que están todos los datos
 
-	//Insertamos nuevos datos
 
-	//Devolvemos un JSON en función de los resultados del insert
-	if (results.affectedRows === 1) {
+	// INSERT DATA
+
+	//Author
+	try {
+		const [authorInsertResult] = await connection.execute(
+			`INSERT INTO freedb_proyectos_molones.Author (Author_name, Author_job, Author_photo) 
+		VALUES (?, ?, ?)`,
+			[
+				req.body.Author_name,
+				req.body.Author_job,
+				req.body.Author_photo
+			]
+		);
+		console.log(authorInsertResult);
+		//Project
+		const [results] = await connection.execute(
+			`INSERT INTO freedb_proyectos_molones.project (project_name, project_slogan, project_repo, project_demo, project_technologies, project_description, project_image, Author_idAuthor)
+			VALUES (?, ?, ?, ?, ?, ?,?,?)` ,
+			[
+				req.body.project_name,
+				req.body.project_slogan,
+				req.body.project_repo,
+				req.body.project_demo,
+				req.body.project_technologies,
+				req.body.project_description,
+				req.body.project_image,
+				authorInsertResult.insertId //value returned from Author ID
+			]
+
+		);
+		//Devolvemos un JSON en función de los resultados del insert
 		res.status(201).json({
 			success: true,
-			message: 'Proyecto creado correctamente',
-			id: results.insertId
-		})
-	} else {
+			id: results.insertId,
+			message: 'Proyecto creado correctamente!'
+		});
+
+	}
+	catch (error) {
+		console.log(error);
 		res.status(500).json({
 			success: false,
-			error: 'Datos no insertados'
+			error: 'Ha ocurrido un error. Datos no insertados'
 		})
-	};
-
+	}
 	//Cerramos conexión
-	await connection.close();
+	connection.close();
 });
 
