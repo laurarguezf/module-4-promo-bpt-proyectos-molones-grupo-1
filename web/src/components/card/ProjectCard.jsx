@@ -20,7 +20,7 @@ function ProjectCard({ allValues }) {
         <h3 className="card__descriptionTitle">Product description</h3>
         <p className="card__description">{allValues.project_description || "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, quos? Itaque, molestias eveniet laudantium adipisci vitae ratione"} </p>
         <div className="card__technicalInfo">
-          <p className="card__technologies">{allValues.technologies || "React JS - HTML - CSS"}</p>
+          <p className="card__technologies">{allValues.project_technologies || "React JS - HTML - CSS"}</p>
           <a className="icon icon__www" href={allValues.project_demo} title="Haz click para ver el proyecto online">Web link</a>
           <a className="icon icon__github" href={allValues.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
         </div>
