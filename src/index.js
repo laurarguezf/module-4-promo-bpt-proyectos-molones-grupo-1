@@ -3,6 +3,7 @@
 //Importar bibliotecas
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mysql = require('mysql2/promise');
 const getConnection = require('./db/db');
 
@@ -23,6 +24,10 @@ const conn = getConnection();
 server.listen(serverPort, () => {
 	console.log(`Server listening at http://localhost:${serverPort}`);
 });
+
+//Programar el servidor de estáticos
+const staticPath = path.join(__dirname, '../web/src');
+server.use(express.static(staticPath));
 
 
 //ENDPOINTS
@@ -79,12 +84,12 @@ server.post('/projects', async (req, res) => {
 	//Author
 	try {
 		const [authorInsertResult] = await connection.execute(
-			`INSERT INTO freedb_proyectos_molones.Author (Author_name, Author_job, Author_photo) 
+			`INSERT INTO freedb_proyectos_molones.Author (author_name, author_job, author_photo) 
 		VALUES (?, ?, ?)`,
 			[
-				req.body.Author_name,
-				req.body.Author_job,
-				req.body.Author_photo
+				req.body.author_name,
+				req.body.author_job,
+				req.body.author_photo
 			]
 		);
 		console.log(authorInsertResult);
@@ -122,4 +127,65 @@ server.post('/projects', async (req, res) => {
 	//Cerramos conexión
 	connection.close();
 });
+
+// -------- Modificar una entrada en 'projects' --------
+server.put('/projects/:idproject', async (req, res) => {
+	console.log(req.body);
+	console.log(req.params);
+	
+  
+	// Conn a bbdd
+  
+	const conn = await getConnection();
+	
+	if( !conn ) {
+	  res.status(500).send('Se rompió');
+	  return;
+	}
+  
+	// Preparo y ejecuto el UPDATE  -> results
+  
+	await conn.execute(
+		`UPDATE freedb_proyectos_molones.Author 
+		SET author_name = ?, author_job = ?, author_photo = ? 
+		WHERE idAuthor = (SELECT Author_idAuthor FROM freedb_proyectos_molones.project WHERE idproject = ?)`,
+		[req.body.author_name, req.body.author_job, req.body.author_photo, req.params.idproject]
+	);
+
+	const [results] = await conn.execute(
+		`UPDATE freedb_proyectos_molones.project 
+		SET project_name = ?, project_slogan = ?, project_repo = ?, project_demo = ?, 
+			project_technologies = ?, project_description = ?, project_image = ?
+		WHERE idproject = ?`,
+		[
+			req.body.project_name,
+			req.body.project_slogan,
+			req.body.project_repo,
+			req.body.project_demo,
+			req.body.project_technologies,
+			req.body.project_description,
+			req.body.project_image,
+			req.params.idproject
+		]
+	);
+	
+  
+	// Si ha afectado a 1 fila, devuelvo success: true
+  
+	if( results.affectedRows === 1 ) {
+	  res.json({
+		success: true
+	  });
+	}
+	else {
+	  // Si no, devuelvo success: false
+  
+	  res.json({
+		success: false
+	  });
+	}
+  
+	await conn.close();
+  });
+
 

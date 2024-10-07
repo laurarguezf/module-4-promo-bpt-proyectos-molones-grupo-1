@@ -39,6 +39,7 @@ function Landing({ projectsArray }) {
                                     <a className="icon icon__www" href={project.project_demo} title="Haz click para ver el proyecto online">Web link</a>
                                     <a className="icon icon__github" href={project.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
                                 </div>
+                                <div onClick={handleClickDelete} className="card__delete">Eliminar proyecto</div>
                             </div>
                 </article>
             )})}
