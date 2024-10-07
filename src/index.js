@@ -14,7 +14,11 @@ const serverPort = 3000;
 
 //Config
 server.use(cors());
-server.use(express.json({ limit: '50Mb' }));
+server.use(express.json({ limit: '50Mb' }));	
+server.set('view engine', 'ejs');
+server.set('views', './views');
+server.use(express.static('./public'));
+
 
 //MySQL connection
 const conn = getConnection();
@@ -66,9 +70,38 @@ server.get('/projects', async (req, res) => {
 	await connection.close();
 });
 
+server.get('/projects/:id', async (req, res) => {
+    const connection = await getConnection();
+    
+    const projectId = req.params.id;
+
+    try {
+        const [results] = await connection.query(`SELECT * FROM project
+        JOIN Author ON project.Author_idAuthor = Author.idAuthor WHERE project.idproject = ?`, [projectId]);
+
+        if (results.length === 0) {
+            res.status(404).send('Proyecto no encontrado');
+            return;
+        }
+		console.log(results)
+
+        // 
+        res.render('cards', { project: results[0] }); 
+
+    } catch (error) {
+        res.status(500).send('Error al recuperar el proyecto');
+    }
+
+    await connection.close();
+});
+
+
+
 
 // -------- Insertar una nueva entrada en 'projects' --------
 server.post('/projects', async (req, res) => {
+	console.log(req.body);
+
 	//Nos conectamos
 	const connection = await getConnection();
 
@@ -126,6 +159,7 @@ server.post('/projects', async (req, res) => {
 	}
 	//Cerramos conexión
 	connection.close();
+	
 });
 
 // -------- Modificar una entrada en 'projects' --------
