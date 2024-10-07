@@ -89,7 +89,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          setMessageUrl(data.cardURL);
+          const projectURL = `http://localhost:3000/projects/${data.id}`;
+          setMessageUrl(projectURL);
           setMessageError('');
         } else {
           setMessageError (data.error);
