@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  
+  .header .header__brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 5px;
+    gap: 7px;
+  }
+  
+  .header .header__companyLogo {
+    height: 31px;
+    color: #ffffff;
+  }
+  
+  .header .header__title {
+    font: 300 1.4rem "Poppins", sans-serif;
+    text-transform: capitalize;
+    color: #ffffff;
+  }
