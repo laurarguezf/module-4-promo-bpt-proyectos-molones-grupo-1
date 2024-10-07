@@ -112,12 +112,12 @@ server.post('/projects', async (req, res) => {
 	//Author
 	try {
 		const [authorInsertResult] = await connection.execute(
-			`INSERT INTO freedb_proyectos_molones.Author (Author_name, Author_job, Author_photo) 
+			`INSERT INTO freedb_proyectos_molones.Author (author_name, author_job, author_photo) 
 		VALUES (?, ?, ?)`,
 			[
-				req.body.Author_name,
-				req.body.Author_job,
-				req.body.Author_photo
+				req.body.author_name,
+				req.body.author_job,
+				req.body.author_photo
 			]
 		);
 		console.log(authorInsertResult);
