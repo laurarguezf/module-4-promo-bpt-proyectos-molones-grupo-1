@@ -97,6 +97,25 @@
   transform: translateY(-45px);
 }
 
+.card__wrap{
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+
+  @media (min-width: 360px){
+    max-width: 450px;
+
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px){
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    max-width: 100%;
+  }
+}
+
 .card {
   display: grid;
   grid-template-columns: 40% 60%;
@@ -181,6 +200,8 @@
 .card .card__job {
   margin-bottom: 0.2rem;
   margin-inline: 0.2rem;
+
+  text-align: center;
 }
 
 .card .card__name {

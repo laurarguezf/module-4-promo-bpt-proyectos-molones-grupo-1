@@ -16,6 +16,7 @@ function Landing({ projectsArray }) {
                 <Link to='/newproject' className='button__landing'>NUEVO PROYECTO</Link>
             </section>
 
+            <div className="card__wrap">
             {projectsArray.map((project) => {
                 return (
                     <article className="card" key={project.idproject}>
@@ -40,9 +41,10 @@ function Landing({ projectsArray }) {
                                 <a className="icon icon__github" href={project.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
                             </div>
                         </div>
-                    </article>
+                    </article>    
                 )
             })}
+            </div>
         </main>
 
     );
