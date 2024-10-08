@@ -432,6 +432,7 @@ fieldset {
 
 .main__landing {
   height: 100vh;
+  padding-inline: 400px;
 }
 
 .button__landing {

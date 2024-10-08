@@ -40,7 +40,7 @@ server.use(express.static(staticPath));
 
 // Servidor de estáticos
 
-server.get('/', async (req, res) => {
+/*server.get('/', async (req, res) => {
     // Nos conectamos a la base de datos
     const connection = await getConnection();
 
@@ -65,7 +65,7 @@ server.get('/', async (req, res) => {
 
     // Cerramos la conexión
     await connection.close();
-});
+});*/
 
 // -------- Listar todos los proyectos --------
 server.get('/projects', async (req, res) => {
