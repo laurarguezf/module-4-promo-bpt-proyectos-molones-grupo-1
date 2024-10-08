@@ -29,19 +29,6 @@ function Landing({ projectsArray }) {
                             <h3 className="card__name">{project.author_name || "Emmelie Bjôrklund"}</h3>
                         </div>
 
-<<<<<<< HEAD
-                            <div className="card__project">
-                                <h3 className="card__name card_name">{project.project_name || "Elegant Workspace"}</h3>
-                                <p className="card__slogan">{project.project_slogan || "Diseños Exclusivos"}</p>
-                                <h3 className="card__descriptionTitle">Product description</h3>
-                                <p className="card__description">{project.project_description || "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, quos? Itaque, molestias eveniet laudantium adipisci vitae ratione"} </p>
-                                <div className="card__technicalInfo">
-                                    <p className="card__technologies">{project.project_technologies || "React JS - HTML - CSS"}</p>
-                                    <a className="icon icon__www" href={project.project_demo} title="Haz click para ver el proyecto online">Web link</a>
-                                    <a className="icon icon__github" href={project.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
-                                </div>
-                                <div onClick={handleClickDelete} className="card__delete">Eliminar proyecto</div>
-=======
                         <div className="card__project">
                             <h3 className="card__name card_name">{project.project_name || "Elegant Workspace"}</h3>
                             <p className="card__slogan">{project.project_slogan || "Diseños Exclusivos"}</p>
@@ -51,7 +38,6 @@ function Landing({ projectsArray }) {
                                 <p className="card__technologies">{project.project_technologies || "React JS - HTML - CSS"}</p>
                                 <a className="icon icon__www" href={project.project_demo} title="Haz click para ver el proyecto online">Web link</a>
                                 <a className="icon icon__github" href={project.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
->>>>>>> 39b4441a45e0dc75e87b81fb6c6f9e8564769360
                             </div>
                         </div>
                     </article>

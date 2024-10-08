@@ -459,3 +459,137 @@ fieldset {
 }
 
 /*# sourceMappingURL=app.css.map */
+
+/*estilos cards.ejs*/
+.projectImageWrapper {
+  text-align: center; 
+  margin-bottom: 30px; 
+  margin-top: 150px;
+}
+
+.projectImage {
+  width: 100%; 
+  max-width: 800px; 
+  height: auto; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cardWrapper {
+  position: relative;
+  margin-top: -100px; 
+}
+.card_details {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  color: var(--color-black);
+  font: var(--font-card-text);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-style: solid;
+  border-width: 1px;
+  border-image-source: linear-gradient(to bottom, var(--color-white) 0%, rgba(0, 0, 0, 0));
+  border-image-slice: 1;
+  background-image: linear-gradient(to bottom, var(--color-white), var(--color-white)), linear-gradient(to bottom, var(--color-white) 0%, rgba(0, 0, 0, 0));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  max-width: 600px; 
+  height: 300px;
+  margin: 0 auto; 
+  padding: 20px;
+  background-color: #fff; 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--color-black);
+}
+
+.cardD__author {
+  order: 1;
+}
+
+.card__authorInfo {
+  order: 2; 
+}
+
+.cardD__project {
+
+  margin-right: 10px;
+  margin-left: 2px;
+}
+.cardDetails__projectTitle {
+  grid-column: 2;
+  position: relative;
+  margin: 15px 10px 1rem 0;
+  text-align: center;
+  text-transform: capitalize;
+  font: var(--font-card-section);
+  text-align: right;
+  font-size: 1.8rem; 
+  margin-bottom: 20px;
+  text-align: center; 
+}
+.cardDetails__projectTitle--text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+}
+.cardD__author {
+  
+  display: flex;
+  align-items: center;
+  margin-bottom: 500px;
+  text-align: center;
+}
+
+.cardD__authorPhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+.cardD_name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.cardD__authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+.cardD__slogan {
+  font-size: 1.1rem;
+  color: var(--color-dark-grey);
+  margin-bottom: 10px;
+}
+.cardD__description {
+  font-size: 1rem;
+  color: var(--color-dark-grey);
+  line-height: 1.6;
+  margin-bottom: 15px;
+
+}
+ 
+.iconD {
+  display: inline-block;
+  width: 30PX;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
+}
+
+.iconD__www {
+  background-image: url("../images/icons/globe-solid.svg");
+}
+
+.iconD__github {
+  background-image: url("../images/icons/github.svg");
+}
+

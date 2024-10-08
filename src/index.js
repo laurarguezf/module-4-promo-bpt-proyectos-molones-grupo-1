@@ -222,4 +222,3 @@ server.put('/projects/:idproject', async (req, res) => {
 	await conn.close();
   });
 
-
