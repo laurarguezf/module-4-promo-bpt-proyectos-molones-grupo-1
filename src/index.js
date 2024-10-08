@@ -16,8 +16,10 @@ const serverPort = 3000;
 server.use(cors());
 server.use(express.json({ limit: '50Mb' }));	
 server.set('view engine', 'ejs');
-server.set('views', './views');
-server.use(express.static('./public'));
+server.set('views', path.join(__dirname, '../views'));
+server.use('/images', express.static(path.join(__dirname, '../views/images')));
+server.use(express.static('./src/public-react'));
+
 
 
 //MySQL connection
@@ -30,14 +32,43 @@ server.listen(serverPort, () => {
 });
 
 //Programar el servidor de estáticos
-const staticPath = path.join(__dirname, '../web/src');
+const staticPath = path.join(__dirname, '../views');
 server.use(express.static(staticPath));
 
 
 //ENDPOINTS
 
+// Servidor de estáticos
+
+server.get('/', async (req, res) => {
+    // Nos conectamos a la base de datos
+    const connection = await getConnection();
+
+    if (!connection) {
+        res.status(500).json({ success: false, error: 'Error con la conexión.' });
+        return;
+    }
+
+    // Obtenemos los proyectos
+    const [results] = await connection.query(`
+        SELECT * FROM project
+        JOIN Author ON project.Author_idAuthor = Author.idAuthor;
+    `);
+
+    // Verificamos si hay proyectos
+    if (!results) {
+        res.status(500).json({ success: false, error: 'Datos no encontrados' });
+    } else {
+        // Renderizamos la vista 'landing.ejs' pasando los proyectos
+        res.render('landing', { projects: results });
+    }
+
+    // Cerramos la conexión
+    await connection.close();
+});
+
 // -------- Listar todos los proyectos --------
-server.get('/projects', async (req, res) => {
+/*server.get('/projects', async (req, res) => {
 	//Nos conectamos
 	const connection = await getConnection();
 
@@ -68,7 +99,7 @@ server.get('/projects', async (req, res) => {
 
 	//Cerramos conexión
 	await connection.close();
-});
+});*/
 
 server.get('/projects/:id', async (req, res) => {
     const connection = await getConnection();
@@ -162,63 +193,6 @@ server.post('/projects', async (req, res) => {
 	
 });
 
-// -------- Modificar una entrada en 'projects' --------
-server.put('/projects/:idproject', async (req, res) => {
-	console.log(req.body);
-	console.log(req.params);
-	
-  
-	// Conn a bbdd
-  
-	const conn = await getConnection();
-	
-	if( !conn ) {
-	  res.status(500).send('Se rompió');
-	  return;
-	}
-  
-	// Preparo y ejecuto el UPDATE  -> results
-  
-	await conn.execute(
-		`UPDATE freedb_proyectos_molones.Author 
-		SET author_name = ?, author_job = ?, author_photo = ? 
-		WHERE idAuthor = (SELECT Author_idAuthor FROM freedb_proyectos_molones.project WHERE idproject = ?)`,
-		[req.body.author_name, req.body.author_job, req.body.author_photo, req.params.idproject]
-	);
-
-	const [results] = await conn.execute(
-		`UPDATE freedb_proyectos_molones.project 
-		SET project_name = ?, project_slogan = ?, project_repo = ?, project_demo = ?, 
-			project_technologies = ?, project_description = ?, project_image = ?
-		WHERE idproject = ?`,
-		[
-			req.body.project_name,
-			req.body.project_slogan,
-			req.body.project_repo,
-			req.body.project_demo,
-			req.body.project_technologies,
-			req.body.project_description,
-			req.body.project_image,
-			req.params.idproject
-		]
-	);
-	
-  
-	// Si ha afectado a 1 fila, devuelvo success: true
-  
-	if( results.affectedRows === 1 ) {
-	  res.json({
-		success: true
-	  });
-	}
-	else {
-	  // Si no, devuelvo success: false
-  
-	  res.json({
-		success: false
-	  });
-	}
-  
-	await conn.close();
-  });
+const staticUrl = './src/public-react'
+server.use(express.static(staticUrl));
 
