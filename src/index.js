@@ -16,11 +16,6 @@
 	server.use(cors());
 	server.use(express.json({ limit: '50Mb' }));	
 	server.set('view engine', 'ejs');
-	server.set('views', path.join(__dirname, '../views'));
-	server.use('/images', express.static(path.join(__dirname, '../views/images')));
-	server.use(express.static('./src/public-react'));
-	server.use(express.static('./public'));
-
 
 	//MySQL connection
 	const conn = getConnection();
@@ -31,43 +26,10 @@
 		console.log(`Server listening at http://localhost:${serverPort}`);
 	});
 
-	//Programar el servidor de estáticos
-	const staticPath = path.join(__dirname, '../views');
-	server.use(express.static(staticPath));
-
-
+	
 	//ENDPOINTS
 
-	// Servidor de estáticos
-
-	server.get('/', async (req, res) => {
-		// Nos conectamos a la base de datos
-		const connection = await getConnection();
-
-		if (!connection) {
-			res.status(500).json({ success: false, error: 'Error con la conexión.' });
-			return;
-		}
-
-		// Obtenemos los proyectos
-		const [results] = await connection.query(`
-			SELECT * FROM project
-			JOIN Author ON project.Author_idAuthor = Author.idAuthor;
-		`);
-
-		// Verificamos si hay proyectos
-		if (!results) {
-			res.status(500).json({ success: false, error: 'Datos no encontrados' });
-		} else {
-			// Renderizamos la vista 'landing.ejs' pasando los proyectos
-			res.render('landing', { projects: results });
-		}
-
-		// Cerramos la conexión
-		await connection.close();
-	});
-
-	// -------- Listar todos los proyectos --------
+	// -------------- Listar todos los proyectos --------------
 	server.get('/projects', async (req, res) => {
 		//Nos conectamos
 		const connection = await getConnection();
@@ -101,35 +63,8 @@
 		await connection.close();
 	});
 
-	server.get('/projects/:id', async (req, res) => {
-		const connection = await getConnection();
-		
-		const projectId = req.params.id;
 
-		try {
-			const [results] = await connection.query(`SELECT * FROM project
-			JOIN Author ON project.Author_idAuthor = Author.idAuthor WHERE project.idproject = ?`, [projectId]);
-
-			if (results.length === 0) {
-				res.status(404).send('Proyecto no encontrado');
-				return;
-			}
-			console.log(results)
-
-			// 
-			res.render('cards', { project: results[0] }); 
-
-		} catch (error) {
-			res.status(500).send('Error al recuperar el proyecto');
-		}
-
-		await connection.close();
-	});
-
-
-
-
-	// -------- Insertar una nueva entrada en 'projects' --------
+	// -------------- Insertar una nueva entrada en 'projects' --------------
 	server.post('/projects', async (req, res) => {
 		console.log(req.body);
 
@@ -140,12 +75,7 @@
 			res.status(500).json({ success: false, error: 'Error con la conexión.' });
 		}
 
-		//Comprobamos que están todos los datos
-
-
-		// INSERT DATA
-
-		//Author
+		//Autora
 		try {
 			const [authorInsertResult] = await connection.execute(
 				`INSERT INTO freedb_proyectos_molones.Author (author_name, author_job, author_photo) 
@@ -157,7 +87,8 @@
 				]
 			);
 			console.log(authorInsertResult);
-			//Project
+		
+		//Project
 			const [results] = await connection.execute(
 				`INSERT INTO freedb_proyectos_molones.project (project_name, project_slogan, project_repo, project_demo, project_technologies, project_description, project_image, Author_idAuthor)
 				VALUES (?, ?, ?, ?, ?, ?,?,?)` ,
@@ -171,7 +102,6 @@
 					req.body.project_image,
 					authorInsertResult.insertId //value returned from Author ID
 				]
-
 			);
 			//Devolvemos un JSON en función de los resultados del insert
 			res.status(201).json({
@@ -179,7 +109,6 @@
 				id: results.insertId,
 				message: 'Proyecto creado correctamente!'
 			});
-
 		}
 		catch (error) {
 			console.log(error);
@@ -190,9 +119,41 @@
 		}
 		//Cerramos conexión
 		connection.close();
-		
 	});
 
-	const staticUrl = './src/public-react'
-	server.use(express.static(staticUrl));
 
+	//Endpoint para el detalle de un proyecto, que acabo de crear
+	server.get('/projects/:id', async (req, res) => {
+		//Me conecto a la db
+		const connection = await getConnection();
+		//Obtener el id el proyecto de la url
+		const projectId = req.params.id;
+		
+		try {
+			//Crear el sql filtrado por id de proyecto y
+			//Ejecutar el sql query()
+			const [results] = await connection.query(`SELECT * FROM project
+			JOIN Author ON project.Author_idAuthor = Author.idAuthor 
+			WHERE project.idproject = ?`, [projectId]);
+
+			if (results.length === 0) {
+				res.status(404).send('Proyecto no encontrado');
+				return;
+			}
+
+			//Renderizar una vista de ejs con los datos del proyecto y envíar el objeto con los datos del proyecto
+			res.render('cards', { project: results[0] }); 
+
+		} catch (error) {
+			res.status(500).send('Error al recuperar el proyecto');
+		}
+		//Cerrar conexión
+		await connection.close();
+	});
+
+
+	// Servidor de estáticos
+
+	const staticUrl = './src/public-react' //Servidor de estáticos para react
+	server.use(express.static(staticUrl));
+	server.use(express.static('./public/styles')); //Servidor de estáticos para los estilos del motor de plantillas 
