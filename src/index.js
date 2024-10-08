@@ -110,7 +110,7 @@
 			const [results] = await connection.query(`SELECT * FROM project
 			JOIN Author ON project.Author_idAuthor = Author.idAuthor WHERE project.idproject = ?`, [projectId]);
 
-			if (results.length === 0) {
+			if (results.length === 0) {x|
 				res.status(404).send('Proyecto no encontrado');
 				return;
 			}
