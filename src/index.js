@@ -18,7 +18,7 @@ server.use(express.json({ limit: '50Mb' }));
 server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, '../views'));
 server.use('/images', express.static(path.join(__dirname, '../views/images')));
-server.use(express.static('./public'));
+server.use(express.static('./src/public-react'));
 
 
 
@@ -193,5 +193,7 @@ server.post('/projects', async (req, res) => {
 	
 });
 
+const staticUrl = './src/public-react'
+server.use(express.static(staticUrl));
 
 
