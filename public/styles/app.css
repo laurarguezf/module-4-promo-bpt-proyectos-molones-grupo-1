@@ -432,7 +432,11 @@ fieldset {
 
 .main__landing {
   height: 100vh;
-  padding-inline: 400px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  gap: 30px;
 }
 
 .button__landing {

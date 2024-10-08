@@ -1,42 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos</title>
-    <link rel="stylesheet" href="./styles/app.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <main className="main__landing">
-        
-        <!-- Recorremos los proyectos con EJS -->
-        <% projects.forEach(project => { %>
-                <article class="card">
-                    <h2 class="card__projectTitle">
-                        <span class="card__projectTitle--text">Personal project card</span>
-                    </h2>
-                    <div class="card__author">
-                        <img class="card__authorPhoto" src="<%=project.author_photo%>" alt="">
-                        <p class="card__job"><%=project.author_job%></p>
-                        <h3 class="card__name"><%=project.author_name%></h3>
-                    </div>
-                    <div class="card__project">
-                        <h3 class="card__name card_name"><%=project.project_name%></h3>
-                        <p class="card__slogan"><%=project.project_slogan%></p>
-                        <h3 class="card__descriptionTitle">Product description</h3>
-                        <p class="card__description"><%=project.project_description%> </p>
-                        <div class="card__technicalInfo">
-                            <p class="card__technologies"><%=project.project_technologies%></p>
-                            <a class="icon icon__www" href=<%=project.project_demo%> title="Haz click para ver el proyecto online">Web link</a>
-                            <a class="icon icon__github" href=<%=project.project_repo%> title="Haz click para ver el código del proyecto">GitHub link</a>
-                        </div>
-                    </div>
-                </article>
+<main class="main__landing">
+  <section class="hero">
+    <h2 class="title">Proyectos molones</h2>
+    <p class="hero__text">Escaparate en línea para recoger ideas a través de la tecnología</p>
+    <a href='/newproject' class='button__landing'>NUEVO PROYECTO</a>
+  </section>
+<!-- Recorremos los proyectos con EJS -->
+  <% projects.forEach(project => { %>
+    <article class="card">
+      <h2 class="card__projectTitle">
+        <span class="card__projectTitle--text">Personal project card</span>
+      </h2>
+      <div class="card__author">
+        <img class="card__authorPhoto" src="<%=project.author_photo%>" alt="">
+        <p class="card__job"><%=project.author_job%></p>
+        <h3 class="card__name"><%=project.author_name%></h3>
+      </div>
+      <div class="card__project">
+        <h3 class="card__name card_name"><%=project.project_name%></h3>
+        <p class="card__slogan"><%=project.project_slogan%></p>
+        <h3 class="card__descriptionTitle">Product description</h3>
+        <p class="card__description"><%=project.project_description%> </p>
+        <div class="card__technicalInfo">
+          <p class="card__technologies"><%=project.project_technologies%></p>
+          <a class="icon icon__www" href=<%=project.project_demo%> title="Haz click para ver el proyecto online">Web link</a>
+          <a class="icon icon__github" href=<%=project.project_repo%> title="Haz click para ver el código del proyecto">GitHub link</a>
+        </div>
+      </div>
+    </article>
                 <!-- <li>
                     <h2><%= project.project_name %></h2>
                     <p><strong>Slogan:</strong> <%= project.project_slogan %></p>
@@ -45,8 +36,5 @@
                     <a href="<%= project.project_demo %>">Ver demo</a> | 
                     <a href="<%= project.project_repo %>">Repositorio</a>
                 </li> -->
-        <% }) %>
-    </main>
-</body>
-
-</html>
+  <% }) %>
+</main>
