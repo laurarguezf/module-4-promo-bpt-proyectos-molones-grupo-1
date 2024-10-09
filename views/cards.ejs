@@ -29,30 +29,35 @@
 
                     <div class="card__author">
                         <img class="card__authorPhoto" src="<%=project.author_photo%>" alt="">
-                        <p class="card__job">Trabajo Autor: <%= project.author_job %> - <%= project.author_job %>
+                        <p class="card__job">
+                            <%= project.author_job %>
                         </p>
-                        <h3 class="card__name">Autor: <%= project.author_name %> - <%= project.author_name %>
+                        <h3 class="card__name">
+                            <%= project.author_name %>
                         </h3>
                     </div>
 
                     <div class="card__project">
-                        <h3 class="card__name card_name">
+                        <h1 class="card__name">
                             <%= project.project_name %>
-                        </h3>
-                        <p class="card__slogan">Slogan: <%= project.project_slogan %>
+                        </h1>
+                        <p class="card__slogan">
+                            <%= project.project_slogan %>
                         </p>
-                        <h3 class="card__descriptionTitle">Product description</h3>
-                        <p class="card__description">Description: <%= project.project_description %>
+                        <p class="card__descriptionTitle">Product Description</h3>
+                        <p class="card__description">
+                            <%= project.project_description %>
                         </p>
 
                         <div class="card__technicalInfo">
                             <p class="card__technologies">
-                            <p>Tecnologías: <%= project.project_technologies %>
+                                <%= project.project_technologies %>
                             </p>
-                            <a class="icon icon__www" href="<%= project.project_demo %>"
-                                title="Haz click para ver el proyecto online">Web link</a>
-                            <a class="icon icon__github" href="<%= project.project_repo %>"
-                                title="Haz click para ver el código del proyecto">GitHub link</a>
+                            <a class="icon icon__www" href="<%= project.project_demo %>" target="_blank"
+                                rel="noopener noreferrer" title="Click to view the project online">Web link</a>
+                            <a class="icon icon__github" href="<%= project.project_repo %>" target="_blank"
+                                rel="noopener noreferrer" title="Click to view the project code on GitHub">GitHub
+                                link</a>
                         </div>
                     </div>
                 </article>

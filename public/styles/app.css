@@ -553,9 +553,9 @@ margin-top: 150px;
 }
 
 .card_details .card__authorPhoto {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 70%;
   background-image: url("../images/avatar.webp");
   background-position: center;
   background-size: cover;
@@ -567,15 +567,16 @@ margin-top: 150px;
   margin-inline: 0.2rem;
 }
 
-.cardD_details .card__name {
+.cardD_details .card__name .card_name{
   font: var(--font-card-title);
   text-align: center;
   margin-bottom: 0.2rem;
   text-align: left;
 }
 
-.cardD_details .cardD_name {
+.cardD_details .card__name {
   text-align: left;
+  
 }
 
 .cardD_details .card__project {
@@ -589,14 +590,14 @@ margin-top: 150px;
   margin-top: -0.2rem;
   margin-bottom: 0.8rem;
 }
-
+.card__slogan {
+font-size: 1.1rem;
+}
 
 .cardD_details .card__descriptionTitle {
   font-weight: inherit;
   text-transform: capitalize;
 }
-
-
  
 .cardD_details .card__technicalInfo {
   display: grid;
@@ -610,7 +611,7 @@ margin-top: 150px;
   font: var(--font-card-tech);
 }
 
-.icon {
+.cardD_details .icon {
   width: 1.6rem;
   height: 1.6rem;
   color: transparent;
@@ -619,11 +620,30 @@ margin-top: 150px;
   box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
 }
 
-.icon__www {
+.cardD_details  .icon__www {
   background-image: url("../images/icons/globe-solid.svg");
 }
 
-.icon__github {
+.cardD_details .icon__github {
   background-image: url("../images/icons/github.svg");
 }
 
+.card__projectTitle,
+.card__author,
+.card__project,
+.card__technologies,
+.icon {
+    margin-bottom: 1rem; /* Adds space below each element */
+}
+
+.card__authorPhoto {
+    margin-right: 0.5rem; /* Adds space between the photo and text */
+}
+
+.card__descriptionTitle {
+    margin-top: 1.5rem; /* Adds extra space above the description title */
+}
+
+.card__description {
+  margin-bottom: 1rem;
+}
