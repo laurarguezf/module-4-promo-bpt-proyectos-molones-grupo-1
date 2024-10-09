@@ -19,6 +19,7 @@ function Landing({ projectsArray }) {
             <div className="card__wrap">
             {projectsArray.map((project) => {
                 return (
+                    <a href={`http://localhost:3000/projects/${project.idproject}`} key={project.idproject} className="detail-link">
                         <article className="card" key={project.idproject}>
                         <h2 className="card__projectTitle">
                             <span className="card__projectTitle--text">Personal project card</span>
@@ -41,10 +42,13 @@ function Landing({ projectsArray }) {
                                 <a className="icon icon__github" href={project.project_repo} title="Haz click para ver el código del proyecto">GitHub link</a>
                             </div>
                         </div>  
-                        <a href={`http://localhost:3000/projects/${project.idproject}`} className="detail-link">
-                                    Ver detalles
-                                </a>      
+
+                        
                     </article>
+                                                    
+                                                    
+                </a>      
+
         
                 );
             })}
