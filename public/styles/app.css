@@ -182,7 +182,6 @@ fieldset {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url("../images/avatar.webp");
   background-position: center;
   background-size: cover;
   margin-bottom: 0.8rem;
@@ -574,7 +573,6 @@ margin-top: 150px;
   width: 9rem;
   height: 9rem;
   border-radius: 70%;
-  background-image: url("../images/avatar.webp");
   background-position: center;
   background-size: cover;
   margin-bottom: 0.8rem;
