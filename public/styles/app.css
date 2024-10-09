@@ -147,7 +147,7 @@ fieldset {
 .card .card__projectTitle {
   grid-column: 2;
   position: relative;
-  margin: 15px 10px 1rem 0;
+  margin: 15px 10px 1rem 0; 
   text-align: center;
   text-transform: capitalize;
   font: var(--font-card-section);
@@ -199,7 +199,7 @@ fieldset {
   margin-bottom: 0.2rem;
 }
 
-.card .card_name {
+.card .card__name {
   text-align: left;
 }
 
@@ -467,11 +467,16 @@ fieldset {
 /*# sourceMappingURL=app.css.map */
 
 /*estilos cards.ejs*/
+
+/* 
 .projectImageWrapper {
   text-align: center; 
   margin-bottom: 30px; 
-  margin-top: 150px;
+margin-top: 150px; 
+
 }
+*/
+
 
 .projectImage {
   width: 100%; 
@@ -489,7 +494,7 @@ fieldset {
 }
 .card_details {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 40% 60%;
   color: var(--color-black);
   font: var(--font-card-text);
   border-radius: 20px;
@@ -506,96 +511,139 @@ fieldset {
   max-width: 600px; 
   height: 300px;
   margin: 0 auto; 
-  padding: 20px;
+  padding: 1.5rem;
   background-color: #fff; 
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: var(--color-black);
 }
 
-.cardD__author {
-  order: 1;
-}
-
-.card__authorInfo {
-  order: 2; 
-}
-
-.cardD__project {
-
-  margin-right: 10px;
-  margin-left: 2px;
-}
-.cardDetails__projectTitle {
+.card_details .card__projectTitle {
   grid-column: 2;
   position: relative;
   margin: 15px 10px 1rem 0;
   text-align: center;
   text-transform: capitalize;
   font: var(--font-card-section);
-  text-align: right;
-  font-size: 1.8rem; 
-  margin-bottom: 20px;
-  text-align: center; 
-}
-.cardDetails__projectTitle--text {
-  font-size: 1.8rem;
-  font-weight: bold;
-  display: inline-block;
-  position: relative;
-}
-.cardD__author {
-  
-  display: flex;
-  align-items: center;
-  margin-bottom: 500px;
-  text-align: center;
 }
 
-.cardD__authorPhoto {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 15px;
+.card_details .card__projectTitle::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  bottom: calc(50% - 1px);
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background-image: linear-gradient(to right, white, #232323 15%, var(--color-black), #232323 85%, white);
 }
-.cardD_name {
-  font-size: 1.2rem;
-  font-weight: bold;
+
+.card_details .card__projectTitle--text {
+  position: relative;
+  padding-inline: 0.1em;
+  z-index: 1;
+  background-color: var(--color-white);
 }
-.cardD__authorInfo {
+
+.card_details .card__author {
   display: flex;
   flex-direction: column;
-}
-.cardD__slogan {
-  font-size: 1.1rem;
-  color: var(--color-dark-grey);
+  align-items: center;
   margin-bottom: 10px;
 }
-.cardD__description {
-  font-size: 1rem;
-  color: var(--color-dark-grey);
-  line-height: 1.6;
-  margin-bottom: 15px;
 
+.card_details .card__authorPhoto {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 70%;
+  background-image: url("../images/avatar.webp");
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 0.8rem;
+}
+
+.cardD_details .card__job {
+  margin-bottom: 0.2rem;
+  margin-inline: 0.2rem;
+}
+
+.cardD_details .card__name .card_name{
+  font: var(--font-card-title);
+  text-align: center;
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+
+.cardD_details .card__name {
+  text-align: left;
+  
+}
+
+.cardD_details .card__project {
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+
+.cardD_details .card__slogan {
+  font: var(--font-card-subtitle);
+  margin-top: -0.2rem;
+  margin-bottom: 0.8rem;
+}
+.card__slogan {
+font-size: 1.1rem;
+}
+
+.cardD_details .card__descriptionTitle {
+  font-weight: inherit;
+  text-transform: capitalize;
 }
  
-.iconD {
-  display: inline-block;
-  width: 32PX;
-  height: 32px;
-  background-size: contain;
-  background-repeat: no-repeat;
+.cardD_details .card__technicalInfo {
+  display: grid;
+  grid-template-columns: 1fr 2rem 2rem;
+  gap: 0.5em;
+  align-items: center;
+  margin-block: 1.8rem;
+}
+
+.cardD_details .card__technologies {
+  font: var(--font-card-tech);
+}
+
+.cardD_details .icon {
+  width: 1.6rem;
+  height: 1.6rem;
   color: transparent;
   cursor: pointer;
   border-radius: 50%;
   box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
 }
 
-.iconD__www {
+.cardD_details  .icon__www {
   background-image: url("../images/icons/globe-solid.svg");
 }
 
-.iconD__github {
+.cardD_details .icon__github {
   background-image: url("../images/icons/github.svg");
 }
 
+.card__projectTitle,
+.card__author,
+.card__project,
+.card__technologies,
+.icon {
+    margin-bottom: 1rem; /* Adds space below each element */
+}
+
+.card__authorPhoto {
+    margin-right: 0.5rem; /* Adds space between the photo and text */
+}
+
+.card__descriptionTitle {
+    margin-top: 1.5rem; /* Adds extra space above the description title */
+}
+
+.card__description {
+  margin-bottom: 1rem;
+}

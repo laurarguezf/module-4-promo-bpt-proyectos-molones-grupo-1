@@ -3,7 +3,7 @@ import Preview from "../preview/Preview";
 import PropTypes from 'prop-types';
 
 
-function NewProject({ allValues, handleInputValue, handleClickCreate, handleClearForm, messageError,messageUrl }) {
+function NewProject({ allValues, handleInputValue, handleClickCreate, handleClearForm, messageError, messageUrl }) {
   return (
     <main className="main">
 
@@ -17,7 +17,7 @@ function NewProject({ allValues, handleInputValue, handleClickCreate, handleClea
         </a>
       </section>
 
-      <Preview allValues={allValues}/>
+      <Preview allValues={allValues} />
       <Form
         allValues={allValues}
         handleInputValue={handleInputValue}
@@ -26,7 +26,7 @@ function NewProject({ allValues, handleInputValue, handleClickCreate, handleClea
         messageError={messageError}
         handleClearForm={handleClearForm}
       />
-      
+
     </main>
   );
 }

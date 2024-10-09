@@ -1,71 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+    <head>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Proyecto</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500&family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/app.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detalles del Proyecto</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500&family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="/app.css">
 
-</head>
+    </head>
 
-<body>
-    <main>
-        <div class="projectImageWrapper">
-            <img class="projectImage" src="<%= project.project_image %>" alt="Imagen del proyecto">
-        </div>
-
-        <div class="cardWrapper"> 
-        <article class="card_details">
-            <h2 class="card__projectTitle">
-                <span class="cardDetails__projectTitle--text">Tarjeta de proyecto personal</span>
-            </h2>
-
-            <div class="cardD__author">
-                <img class="cardD__authorPhoto" src="<%=project.author_photo%>" alt="">
-                <div class="cardD__authorInfo">
-                <p class="card__job">Trabajo Autor: <%= project.author_job %> - <%= project.author_job %>
-                </p>
-                <h3 class="card__name">Autor: <%= project.author_name %> - <%= project.author_name %>
-                </h3>
-            </div>
+    <body>
+        <main>
+            <div class="projectImageWrapper">
+                <img class="projectImage" src="<%= project.project_image %>" alt="Imagen del proyecto">
             </div>
 
-            <div class="cardD__project">
-                <h3 class="card__name cardD_name">
-                    <%= project.project_name %>
-                </h3>
-                <p class="cardD__slogan">Slogan: <%= project.project_slogan %>
-                </p>
-                <h3 class="card__descriptionTitle">Descripción del producto</h3>
-                <p class="cardD__description">Descripción: <%= project.project_description %>
-                </p>
+            <div class="cardWrapper">
+                <article class="card_details">
+                    <h2 class="card__projectTitle">
+                        <span class="card__projectTitle--text">Personal project card</span>
+                    </h2>
 
-                <div class="card__technicalInfo">
-                    <p class="card__technologies">
-                    <p>Tecnologías: <%= project.project_technologies %>
-                    </p>
-                    <a class="iconD iconD__www" href="<%= project.project_demo %>"
-                        title="Haz click para ver el proyecto online">Web link</a>
-                    <a class="iconD iconD__github" href="<%= project.project_repo %>"
-                        title="Haz click para ver el código del proyecto">GitHub link</a>
-                </div>
+                    <div class="card__author">
+                        <img class="card__authorPhoto" src="<%=project.author_photo%>" alt="">
+                        <p class="card__job">
+                            <%= project.author_job %>
+                        </p>
+                        <h3 class="card__name">
+                            <%= project.author_name %>
+                        </h3>
+                    </div>
+
+                    <div class="card__project">
+                        <h1 class="card__name">
+                            <%= project.project_name %>
+                        </h1>
+                        <p class="card__slogan">
+                            <%= project.project_slogan %>
+                        </p>
+                        <p class="card__descriptionTitle">Product Description</h3>
+                        <p class="card__description">
+                            <%= project.project_description %>
+                        </p>
+
+                        <div class="card__technicalInfo">
+                            <p class="card__technologies">
+                                <%= project.project_technologies %>
+                            </p>
+                            <a class="icon icon__www" href="<%= project.project_demo %>" target="_blank"
+                                rel="noopener noreferrer" title="Click to view the project online">Web link</a>
+                            <a class="icon icon__github" href="<%= project.project_repo %>" target="_blank"
+                                rel="noopener noreferrer" title="Click to view the project code on GitHub">GitHub
+                                link</a>
+                        </div>
+                    </div>
+                </article>
             </div>
-        </article>
-
-
-
-    </div>
-
-
-
-    </main>
-</body>
+        </main>
+    </body>
 
 </html>
