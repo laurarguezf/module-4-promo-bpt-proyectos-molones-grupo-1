@@ -413,14 +413,32 @@ fieldset {
   cursor: pointer;
   border-radius: 50%;
   box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
+  width: 3rem; 
+  height: 3rem; 
+  background-color: transparent; 
+  cursor: pointer;
+  border-radius: 50%; 
+  background-size: 60%; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  display: inline-block; 
+  box-shadow: none; 
+  border: none; 
+  padding: 0; 
 }
 
 .icon__www {
-  background-image: url("../images/icons/globe-solid.svg");
+  background-image: url("../icons/globe-solid.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .icon__github {
-  background-image: url("../images/icons/github.svg");
+  background-image: url("../icons/github.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .link_create_card {
@@ -647,3 +665,16 @@ font-size: 1.1rem;
 .card__description {
   margin-bottom: 1rem;
 }
+
+.icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
+}
+
+
+
+
