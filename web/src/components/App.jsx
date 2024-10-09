@@ -31,8 +31,9 @@ function App() {
 
     //Fetch projects
     async function fetchProjects() {
-      try { 
-        const res = await fetch('http://localhost:3000/projects')
+      try {
+        const server = import.meta.env.DEV ? 'http://localhost:3000/projects' : '/projects';
+        const res = await fetch(server)
         const data = await res.json();
         setProjectsArray(data);
         }
@@ -78,8 +79,8 @@ function App() {
   
   //Create project card
   const handleClickCreate = () => {
-
-    fetch('http://localhost:3000/projects', {
+    const server = import.meta.env.DEV ? 'http://localhost:3000/projects' : '/projects';
+    fetch(server, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -89,7 +90,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          const projectURL = `http://localhost:3000/projects/${data.id}`;
+          const projectURL = import.meta.env.DEV ? `http://localhost:3000/projects/${data.id}` : `https://module-4-promo-bpt-proyectos-molones.onrender.com/projects/${data.id}`;
           setMessageUrl(projectURL);
           setMessageError('');
         } else {
