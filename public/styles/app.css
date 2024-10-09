@@ -485,19 +485,19 @@ fieldset {
 
 /*estilos cards.ejs*/
 
-/* 
+
 .projectImageWrapper {
   text-align: center; 
   margin-bottom: 30px; 
-margin-top: 150px; 
-
 }
-*/
+
 
 
 .projectImage {
   width: 100%; 
-  max-width: 800px; 
+  max-width: 700px; 
+  max-height: 500px;
+  object-fit: cover;
   height: auto; 
   border-radius: 10px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -672,6 +672,10 @@ font-size: 1rem;
   box-shadow: 0 0 5px 0 var(--color-greyish-brown-two);
 }
 
+.detail_project_container {
+  padding: 30px 200px 100px 200px;
+
+}
 
 
 
