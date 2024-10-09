@@ -21,9 +21,15 @@ const conn = getConnection();
 
 
 //Arrancar el servidor
-server.listen(serverPort, () => {
+/*server.listen(serverPort, () => {
 	console.log(`Server listening at http://localhost:${serverPort}`);
+});*/
+
+const port = process.env.PORT || serverPort; // Usamos el puerto que Render asigna o el serverPort como fallback
+server.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
 });
+
 
 
 //ENDPOINTS
