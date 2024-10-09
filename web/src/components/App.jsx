@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 
+
+
 function App() {
 
   //Global variables
@@ -121,6 +123,7 @@ function App() {
           messageUrl={messageUrl}
           allValues={allValues} />} 
         />
+
 
       </Routes> 
       <Footer />

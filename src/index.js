@@ -1,5 +1,4 @@
 //Servidor de Express
-
 //Importar bibliotecas
 const express = require('express');
 const cors = require('cors');
